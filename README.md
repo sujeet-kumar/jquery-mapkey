@@ -1,4 +1,4 @@
 # jquery-mapkey
-jQuery mapkey
+jQuery mapkey plugin
 
 -by Sujeet <sujeetkv90@gmail.com>

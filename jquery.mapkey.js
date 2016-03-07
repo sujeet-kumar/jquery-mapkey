@@ -1,36 +1,52 @@
 /**
- * jQuery Key Mapper -by Sujeet <sujeetkv90@gmail.com>
+ * jQuery mapKey plugin
+ * v 2.0
+ * -by Sujeet <sujeetkv90@gmail.com>
  * https://github.com/sujeet-kumar/jquery-mapkey
  */
 
 (function($){
-	$.ctrl = function(key, callback, callbackContext){
-		$(document).keydown(function(e){
-			var returnVal = null;
-			if(e.keyCode == key.charCodeAt(0) && e.ctrlKey){
-				returnVal = callback.call(callbackContext || this, e);
-				if(returnVal === false) return false;
+	$.fn.mapKey = function(key_map, callback){
+		var el = this;
+		
+		var _callback = function(e){
+			var code = (e.which) ? e.which : e.keyCode;
+			var character = String.fromCharCode(code).toLowerCase();
+			
+			var command_keys = {'ctrl': false, 'shift': false, 'alt': false, 'meta': false};
+			
+			var keys = key_map.split('+');
+			
+			var key_count = 0;
+			for(var i in keys){
+				var k = keys[i].toLowerCase();
+				if(command_keys.hasOwnProperty(k)){
+					command_keys[k] = true;
+					key_count++;
+				}else if(k == character){
+					key_count++;
+				}
 			}
-		});
-	};
-	
-	$.alt = function(key, callback, callbackContext){
-		$(document).keydown(function(e){
+			
 			var returnVal = null;
-			if(e.keyCode == key.charCodeAt(0) && e.altKey){
-				returnVal = callback.call(callbackContext || this, e);
+			if(key_count == keys.length
+					&& command_keys.ctrl == e.ctrlKey
+					&& command_keys.shift == e.shiftKey
+					&& command_keys.alt == e.altKey
+					&& command_keys.meta == e.metaKey){
+				
+				returnVal = callback.call(el, e);
 				if(returnVal === false) return false;
+				
 			}
-		});
-	};
-	
-	$.shift = function(key, callback, callbackContext){
-		$(document).keydown(function(e){
-			var returnVal = null;
-			if(e.keyCode == key.charCodeAt(0) && e.shiftKey){
-				returnVal = callback.call(callbackContext || this, e);
-				if(returnVal === false) return false;
+		};
+		
+		$(el).on('keydown.mapkey', _callback);
+		
+		return {
+			'remove': function(){
+				$(el).off('keydown.mapkey', _callback);
 			}
-		});
+		};
 	};
 })(jQuery);

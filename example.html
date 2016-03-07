@@ -7,19 +7,18 @@
 <script type="text/javascript">
 // example
 $(function(){
-	$.ctrl('A',function(e){
-		alert('ctrl A');
+	$(document).mapKey('Ctrl+Shift+Alt+A', function(e){
+		alert('hello1');
 		return false;
 	});
 	
-	$.alt('A',function(e){
-		alert('alt A');
+	var keyMap1 = $(document).mapKey('Ctrl+Alt+A', function(e){
+		alert('hello');
 		return false;
 	});
 	
-	$.shift('A',function(e){
-		alert('shift A');
-		return false;
+	$('h1').click(function(){
+		keyMap1.remove();
 	});
 });
 </script>
