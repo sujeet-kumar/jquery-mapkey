@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>map key</title>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script type="text/javascript" src="jquery.mapkey.js"></script>
+<script type="text/javascript">
+// example
+$(function(){
+	$.ctrl('A',function(e){
+		alert('ctrl A');
+		return false;
+	});
+	
+	$.alt('A',function(e){
+		alert('alt A');
+		return false;
+	});
+	
+	$.shift('A',function(e){
+		alert('shift A');
+		return false;
+	});
+});
+</script>
+</head>
+
+<body>
+<h1>Demo</h1>
+</body>
+</html>
