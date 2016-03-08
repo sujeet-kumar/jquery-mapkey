@@ -35,7 +35,7 @@
 					&& command_keys.alt == e.altKey
 					&& command_keys.meta == e.metaKey){
 				
-				returnVal = callback.call(el, e);
+				returnVal = callback.call((e.target || el), e);
 				if(returnVal === false) return false;
 				
 			}
