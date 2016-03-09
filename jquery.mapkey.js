@@ -7,10 +7,10 @@
 
 (function($){
 	$.fn.mapKey = function(key_map, callback){
-		var el = this;
+		var $el = this;
 		
 		var _callback = function(e){
-			var code = (e.which) ? e.which : e.keyCode;
+			var code = e.which || e.keyCode;
 			var character = String.fromCharCode(code).toLowerCase();
 			
 			var command_keys = {'ctrl': false, 'shift': false, 'alt': false, 'meta': false};
@@ -35,17 +35,17 @@
 					&& command_keys.alt == e.altKey
 					&& command_keys.meta == e.metaKey){
 				
-				returnVal = callback.call((e.target || el), e);
+				returnVal = callback.call((e.target || $el), e);
 				if(returnVal === false) return false;
 				
 			}
 		};
 		
-		$(el).on('keydown.mapkey', _callback);
+		$el.on('keydown.mapkey', _callback);
 		
 		return {
 			'remove': function(){
-				$(el).off('keydown.mapkey', _callback);
+				$el.off('keydown.mapkey', _callback);
 			}
 		};
 	};
