@@ -1,8 +1,9 @@
 /**
  * jQuery mapKey plugin
  * v 2.0
- * -by Sujeet <sujeetkv90@gmail.com>
- * https://github.com/sujeet-kumar/jquery-mapkey
+ *
+ * @author Sujeet <sujeetkv90@gmail.com>
+ * @link https://github.com/sujeet-kumar/jquery-mapkey
  */
 
 (function($){
@@ -29,15 +30,15 @@
 			}
 			
 			var returnVal = null;
-			if(key_count == keys.length
-					&& command_keys.ctrl == e.ctrlKey
-					&& command_keys.shift == e.shiftKey
-					&& command_keys.alt == e.altKey
-					&& command_keys.meta == e.metaKey){
-				
+			if(key_count == keys.length 
+			&& command_keys.ctrl == e.ctrlKey 
+			&& command_keys.shift == e.shiftKey 
+			&& command_keys.alt == e.altKey 
+			&& command_keys.meta == e.metaKey){
 				returnVal = callback.call((e.target || $el), e);
-				if(returnVal === false) return false;
-				
+				if(returnVal === false){
+					return false;
+				}
 			}
 		};
 		
