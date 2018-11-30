@@ -3,7 +3,7 @@
  * v 2.0
  *
  * @author Sujeet <sujeetkv90@gmail.com>
- * @link https://github.com/sujeet-kumar/jquery-mapkey
+ * @link https://github.com/sujeetkv/jquery-mapkey
  */
 
 (function ($) {
